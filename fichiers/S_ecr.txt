@@ -1,0 +1,3 @@
+Paquet de Communication etablie [NUMERO_CONNEXION=0, typeDePaquet=00001111, addresseSource=112, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication etablie [NUMERO_CONNEXION=1, typeDePaquet=00001111, addresseSource=146, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication etablie [NUMERO_CONNEXION=2, typeDePaquet=00001111, addresseSource=202, addresseDest=66, primitive=N_CONNECT_resp]

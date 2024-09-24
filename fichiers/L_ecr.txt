@@ -1,0 +1,16 @@
+PaquetAppel [NUMERO_CONNEXION=0, typeDePaquet=00001011, addresseSource=112, addresseDest=66, primitive=N_CONNECT_req]
+
+Bonjour les amis.
+
+PaquetAppel [NUMERO_CONNEXION=1, typeDePaquet=00001011, addresseSource=146, addresseDest=66, primitive=N_CONNECT_req]
+
+« Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
+
+bonjour les amis
+
+PaquetAppel [NUMERO_CONNEXION=2, typeDePaquet=00001011, addresseSource=202, addresseDest=66, primitive=N_CONNECT_req]
+
+L’utilisateur distant B, ou le fournisseur, peuvent refuser d’établir la connexion (manque de ressources, mauvais fonctionnemen
+
+ local, ou autre raison). Les figures 2 et 3illustrent un refus d’établissement de connexion de la part de l’utilisateur, respe
+
