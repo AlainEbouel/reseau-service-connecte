@@ -1,13 +1,9 @@
 package couches;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -19,8 +15,6 @@ import paquets.*;
 
 public class LiaisonDeDonnees // Couche liaison de donn�es
 {
-	// private static File L_ecr= new File("fichiers/L_ecr.txt");
-	// private static File L_lec= new File("fichiers/L_lec.txt");
 	private static boolean grosPaquet;
 	private static String grosData = "";
 	private Path l_lec;
@@ -181,5 +175,4 @@ public class LiaisonDeDonnees // Couche liaison de donn�es
 		else
 			return false;
 	}
-
 }

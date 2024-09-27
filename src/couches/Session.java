@@ -10,9 +10,6 @@ public class Session
 	private ProcessusET ET;
 	private ProcessusER ER;
 	public static int count = 0;
-	private BufferedReader l_lec;
-	private BufferedReader l_ecr;
-	private BufferedReader s_ecr;
 	private BufferedReader s_lec;
 
 	public Session(Path S_lecPath) throws IOException, InterruptedException

@@ -1,1 +1,18 @@
-00010Bonjour les amis.00020« Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 00010bonjour les amis00030L’utilisateur distant B, ou le fournisseur, peuvent refuser d’établir la connexion (manque de ressources, mauvais fonctionnement local, ou autre raison). Les figures 2 et 3illustrent un refus d’établissement de connexion de la part de l’utilisateur, respectivementdu fournisseur.00020Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.00030Le transfert de données est un service non confirmé.00010Est-ce que tout le monde se porte bien?00030La libération de connexion est un service non confirmé.00020Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat00010Je viendrais vous voir bientôt si je trouve un peu de temps. 00030Il y a donc deux primitives associées à ce service. La libération peut intervenir sur demande de l’un des deux utilisateurs du service de réseau (Figure 5), ou bien sur demande du fournisseur de service (Figure 6).00020Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar00030Les actions décrites dans les paragraphes suivants sont celles mises en œuvre par les entités de la couche réseau côté appelant.00010Comme vous le savez je suis très sollicité en ce moment, mais je ferai de mon mieux pour touver un peu de temps.00020 Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede.00010J'ai contacté nos amis et ils seront du voyage.0001100030Si le paquet d’acquittement n’arrive pas (expiration d’un temporisateur) ou si c’est un paquet d’acquittement négatif, réémettre le paquetconcerné.0003100020Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.00021
+00010Le professeur donne des lectures dirigées de chapitres à lire et exercices à faire avant les cours et
+00020répond aux questions et effectue des démonstrations durant les périodes de cours. Vous recevrez 
+00010aussi des devoirs et un projet de session à compléter portant sur la matière. Le cours sera 
+00030organisé en deux parties principales. Une première partie porte sur certains concepts de base 
+00020relatifs aux langages de programmation, à leur évaluation, à leur description ainsi qu'à leur 
+00030analyse. La deuxième partie, incluant la réalisation d'un projet, porte sur le développement de 
+00010quelques thèmes relatifs à l'analyse automatique de programmes. Cette partie est axée sur une 
+00030participation active des étudiants et des étudiantes. Il vous sera fortement suggéré des lectures 
+00020complémentaires à la matière développée en cours. Par ailleurs, les étudiants et les étudiantes
+00010auront à effectuer des présentations sur les sujets développés (thème, projet).
+00030Un réseau local d'entreprise est constitué d'ordinateurs reliés entre eux par un ensemble logiciel
+00020C'est un réseau qui couvre un espace géographique restreint. Il peut être constitué des différents 
+00030étages d'un immeuble ou de plusieurs immeubles à l'intérieur d'une société.
+00010La taille d'un réseau local peut atteindre le millier d'utilisateurs. Ladistance maximale 
+00020qu'il peut atteindre est d'environ 10 km, si le support soit la fibre optique.
+00010Le débit varie de 1 à 100 mégabits par secondes.
+00010Un LAN est caractérisé par sa fonction de diffusion. Chaque bit émis par une station est reçu par 
+00030l'ensemble des autres stations du LAN. La normalisation des réseaux locaux est réalisée par l'IEEE,comité 802.

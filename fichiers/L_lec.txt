@@ -1,3 +1,0 @@
-Acquitement Positif :[numeroDeConnexion=0, typeDePaquet=00100001]
-Acquitement Positif :[numeroDeConnexion=1, typeDePaquet=01100001]
-Acquitement Positif :[numeroDeConnexion=0, typeDePaquet=10100001]

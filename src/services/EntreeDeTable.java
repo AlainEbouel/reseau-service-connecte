@@ -1,7 +1,7 @@
 package services;
 import enumurations.EtatDeConnexion;
 
-public class EntreeDeTable // Représentation des entrées de la table utilisée par la couche transport ET
+public class EntreeDeTable // Reprï¿½sentation des entrï¿½es de la table utilisï¿½e par la couche transport ET
 {
 	private final int identifiantExtremite;
 	private EtatDeConnexion etatDeConnexion;
@@ -12,7 +12,6 @@ public class EntreeDeTable // Représentation des entrées de la table utilisée pa
 		this.identifiantExtremite = numeroDeConnexion;
 		this.etatDeConnexion = etatDeConnexion;
 		this.numApplication = numApplication;
-
 	}
 
 	public int getIdConnexion()
@@ -34,5 +33,4 @@ public class EntreeDeTable // Représentation des entrées de la table utilisée pa
 	{
 		this.etatDeConnexion = etatDeConnexion;
 	}
-
 }

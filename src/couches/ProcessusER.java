@@ -86,6 +86,7 @@ public class ProcessusER // Couche Reseau
 		}
 
 		String typePaquet = formatTypeDePaquet(0);
+		System.err.println("data=" + data + "\nindex=" + index + "\ndataBytes.length=" + dataBytes.length);
 		String dataPartiel = data.substring(index, dataBytes.length);
 		liaisonDeDonnees
 				.envoisPaquetDeDonnees(new PaquetDeDonnees(numConnexion, typePaquet, dataPartiel), addrSource);
