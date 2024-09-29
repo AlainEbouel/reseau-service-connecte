@@ -32,7 +32,7 @@ public class ProcessusER // Couche Reseau
 			numConnexion = count++;
 			PaquetAppel paquetAppel = preparationPaquetAppel(addrSource, addrDestination, numConnexion);
 
-			// sauvegarde info necessaire � cette connexion
+			// sauvegarde info necessaire a cette connexion
 			sauvegardeInfos.add(new SauvegardeInfos(numConnexion, addrSource, addrDestination,
 					EtatDeConnexion.attenteDeConfirmation, numIdentifiant));
 
@@ -41,7 +41,7 @@ public class ProcessusER // Couche Reseau
 		}
 	}
 
-	// Pr�paration de paquet d'appel
+	// Preparation de paquet d'appel
 	private PaquetAppel preparationPaquetAppel(int addrSource, int addrDestination, int numeroConnexion)
 	{
 		return new PaquetAppel(numeroConnexion, addrSource, addrDestination);
@@ -49,28 +49,27 @@ public class ProcessusER // Couche Reseau
 
 	// Preparation de paquets de donn�es
 	public PaquetAcquittement preparationPaquetDeDonnees(String data, Primitive nDataReq, int numConnexion,
-			int addrSource) throws IOException
+			int addrSource, int idApplication) throws IOException
 	{
 		PaquetAcquittement resultEnvois;
 		PaquetDeDonnees paquetDonnees;
 
 		if (data.length() > 128)
-			return traitementGrosPaquet(numConnexion, data, addrSource);
+			return traitementGrosPaquet(numConnexion, data, addrSource, idApplication);
 		else
 		{
 			String typePaquet = formatTypeDePaquet(0);
 			paquetDonnees = new PaquetDeDonnees(numConnexion, typePaquet, data);
 
-			resultEnvois = liaisonDeDonnees.envoisPaquetDeDonnees(paquetDonnees, addrSource);
-
-			fenetreAnticipation(resultEnvois, paquetDonnees, addrSource);// pour g�rer les acquittements
+			resultEnvois = liaisonDeDonnees.envoisPaquetDeDonnees(paquetDonnees, addrSource, idApplication);
+			fenetreAnticipation(resultEnvois, paquetDonnees, addrSource, idApplication);// pour gerer les acquittements
 
 			return resultEnvois;
 		}
 	}
 
-	// Traitement des grosses donn�es(>128o)
-	private PaquetAcquittement traitementGrosPaquet(int numConnexion, String data, int addrSource) throws IOException
+	// Traitement des grosses donnees(>128o)
+	private PaquetAcquittement traitementGrosPaquet(int numConnexion, String data, int addrSource, int idApplication) throws IOException
 	{
 		byte[] dataBytes = data.getBytes();
 		int nbrPaquet = dataBytes.length % 128 == 0 ? dataBytes.length / 128 : dataBytes.length / 128 + 1;
@@ -80,21 +79,20 @@ public class ProcessusER // Couche Reseau
 			String typePaquet = formatTypeDePaquet(1);
 			String dataPartiel = data.substring(index, index + 127);
 			liaisonDeDonnees.envoisPaquetDeDonnees(
-					new PaquetDeDonnees(numConnexion, typePaquet, dataPartiel), addrSource);
+					new PaquetDeDonnees(numConnexion, typePaquet, dataPartiel), addrSource, idApplication);
 			index += 128;
 			nbrPaquet--;
 		}
 
 		String typePaquet = formatTypeDePaquet(0);
-		System.err.println("data=" + data + "\nindex=" + index + "\ndataBytes.length=" + dataBytes.length);
 		String dataPartiel = data.substring(index, dataBytes.length);
 		liaisonDeDonnees
-				.envoisPaquetDeDonnees(new PaquetDeDonnees(numConnexion, typePaquet, dataPartiel), addrSource);
+				.envoisPaquetDeDonnees(new PaquetDeDonnees(numConnexion, typePaquet, dataPartiel), addrSource, idApplication);
 
 		return null;
 	}
 
-	// Demande de Lib�ration de connexion
+	// Demande de Liberation de connexion
 	public void liberation(int idConnexion, Primitive nDisconnectReq) throws IOException
 	{
 		int addrSource = getAddrSource(idConnexion);
@@ -105,11 +103,11 @@ public class ProcessusER // Couche Reseau
 	}
 
 	// Fenetre d'anticipation pour la gestion des acquittements
-	private void fenetreAnticipation(PaquetAcquittement resultEnvois, PaquetDeDonnees paquetDonnees, int addrSource)
+	private void fenetreAnticipation(PaquetAcquittement resultEnvois, PaquetDeDonnees paquetDonnees, int addrSource, int idApplication)
 			throws IOException
 	{
 		if (resultEnvois == null || resultEnvois.getTypeDePaquet().substring(3) == "01001")
-			liaisonDeDonnees.retransmissionDonnees(paquetDonnees, addrSource);
+			liaisonDeDonnees.retransmissionDonnees(paquetDonnees, addrSource, idApplication);
 	}
 
 	// Formatage du champ type de paquet

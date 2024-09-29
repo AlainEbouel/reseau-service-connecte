@@ -24,7 +24,7 @@ public class Session
 	{
 		while (s_lec.ready())
 		{
-			ET.traitement(ER, s_lec.readLine(), s_lec );
+			ET.traitement(ER, s_lec.readLine());
 		}
 		s_lec.close();
 	}

@@ -76,12 +76,12 @@ public class LiaisonDeDonnees // Couche liaison de donn�es
 	}
 
 	// R�ception des paquets de donn�es
-	public PaquetAcquittement envoisPaquetDeDonnees(PaquetDeDonnees paquetDeDonnees, int addrSource)
+	public PaquetAcquittement envoisPaquetDeDonnees(PaquetDeDonnees paquetDeDonnees, int addrSource, int idApplication)
 			throws IOException
 	{
 		// Ecriture dans L_ecr
-		ecrireDansFichiers(l_ecr, paquetDeDonnees.getDonnees());
-
+		ecrireDansFichiers(l_ecr, paquetDeDonnees.getDonnees(), idApplication);
+		
 		// Acquittement
 		char bitM = paquetDeDonnees.getTypeDePaquet().charAt(3);
 
@@ -129,9 +129,9 @@ public class LiaisonDeDonnees // Couche liaison de donn�es
 	}
 
 	// reception de donn�es retransmis(apr�s acquittement n�gatif)
-	public PaquetAcquittement retransmissionDonnees(PaquetDeDonnees paquetDeDonnees, int addrSource)	throws IOException
+	public PaquetAcquittement retransmissionDonnees(PaquetDeDonnees paquetDeDonnees, int addrSource, int idApplication)	throws IOException
 	{
-		return envoisPaquetDeDonnees(paquetDeDonnees, addrSource);
+		return envoisPaquetDeDonnees(paquetDeDonnees, addrSource, idApplication);
 	}
 
 	// R�ception de demandes de lib�ration
@@ -141,13 +141,23 @@ public class LiaisonDeDonnees // Couche liaison de donn�es
 	}
 
 	// Ecriture dans le fichier L_ecr
+	private void ecrireDansFichiers(Path path, String ecriture, int idApplication) throws IOException
+	{
+		ecrire(path, ecriture, idApplication);
+	}
+
 	private void ecrireDansFichiers(Path path, String ecriture) throws IOException
 	{
+		ecrire(path, ecriture, -1);
+	}
+
+	private void ecrire(Path path, String ecriture, int idApplication) throws IOException{
 		StandardOpenOption standardOpenOption = StandardOpenOption.APPEND;
-		BufferedWriter buf;
-		
-		buf = Files.newBufferedWriter(path, standardOpenOption);
-		buf.write(ecriture);
+		BufferedWriter buf = Files.newBufferedWriter(path, standardOpenOption);
+
+		if (idApplication < 0 ) buf.write(ecriture);
+		else buf.write("000" + idApplication + "0=>" + ecriture );
+
 		buf.newLine();
 		buf.close();
 	}

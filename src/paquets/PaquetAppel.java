@@ -54,7 +54,7 @@ public class PaquetAppel implements IPaquet
 	@Override
 	public String toString()
 	{
-		return "PaquetAppel [NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet=" + typePaquetBinaryDigits()
+		return "******** PaquetAppel ******** [NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet=" + typePaquetBinaryDigits()
 				+ ", addresseSource=" + addresseSource + ", addresseDest=" + addresseDest + ", primitive="
 				+ primitive + "]\n";
 	}

@@ -1,18 +1,35 @@
-00010Le professeur donne des lectures dirigées de chapitres à lire et exercices à faire avant les cours et
-00020répond aux questions et effectue des démonstrations durant les périodes de cours. Vous recevrez 
-00010aussi des devoirs et un projet de session à compléter portant sur la matière. Le cours sera 
-00030organisé en deux parties principales. Une première partie porte sur certains concepts de base 
-00020relatifs aux langages de programmation, à leur évaluation, à leur description ainsi qu'à leur 
-00030analyse. La deuxième partie, incluant la réalisation d'un projet, porte sur le développement de 
-00010quelques thèmes relatifs à l'analyse automatique de programmes. Cette partie est axée sur une 
-00030participation active des étudiants et des étudiantes. Il vous sera fortement suggéré des lectures 
-00020complémentaires à la matière développée en cours. Par ailleurs, les étudiants et les étudiantes
-00010auront à effectuer des présentations sur les sujets développés (thème, projet).
-00030Un réseau local d'entreprise est constitué d'ordinateurs reliés entre eux par un ensemble logiciel
-00020C'est un réseau qui couvre un espace géographique restreint. Il peut être constitué des différents 
-00030étages d'un immeuble ou de plusieurs immeubles à l'intérieur d'une société.
-00010La taille d'un réseau local peut atteindre le millier d'utilisateurs. Ladistance maximale 
-00020qu'il peut atteindre est d'environ 10 km, si le support soit la fibre optique.
-00010Le débit varie de 1 à 100 mégabits par secondes.
-00010Un LAN est caractérisé par sa fonction de diffusion. Chaque bit émis par une station est reçu par 
-00030l'ensemble des autres stations du LAN. La normalisation des réseaux locaux est réalisée par l'IEEE,comité 802.
+00010When the network service user is notified that the connection is established, he
+00020Lorsque lutilisateur de service de réseau est prévenu que la connexion est établie, il
+00030Wanneer de gebruiker van de netwerkdienst wordt geïnformeerd dat de verbinding tot stand is gebracht, kan hij
+00010can then use the data transfer request primitive to have the network service
+00020peut alors utiliser la primitive de requête de transfert de données pour que le fournisseur
+00030kan vervolgens de primitieve gegevensoverdrachtaanvraag gebruiken, zodat de provider
+00010provider route his information. The network layer entity then
+00020du service de réseau achemine ses informations. Lentité de la couche réseau alors met
+00030van de netwerkdienst draagt zijn informatie over. De netwerklaagentiteit plaatst vervolgens
+00010implements the following actions:
+00020en œuvre les actions suivantes :
+00030implementeert de volgende acties:
+00010identify the connection number concerned by the request;
+00020identifier le numéro de connexion concernée par la demande;
+00030identificeer het verbindingsnummer waarop de aanvraag betrekking heeft;
+00010segment into several packets if necessary;
+00020segmenter en plusieurs paquets si cest nécessaire;
+00030segmenteer indien nodig in verschillende pakketten;
+00010construct the data packet(s);
+00020construire le (ou les) paquet(s) de données;
+00030de datapakket(ten) samenstellen;
+00020Il y a segmentation lorsque la taille du message delivre par la couche transport est superieure a la taille maximale du champ de donnees dun paquet (128 octets).
+00010use the link service to route the packet(s);
+00020attente dun paquet dacquittement entre lémission de chaque paquet (la fenêtre
+00030gebruik van de linkdienst om het/de pakket(ten) door te sturen;
+00010wait for an acknowledgement packet between the transmission of each packet (the
+00020danticipation est de 1). Si le paquet dacquittement narrive pas (expiration dun
+00030wachtend op een bevestigingspakket tussen de verzending van elk pakket (het venster
+00010anticipation window is 1). If the acknowledgement packet does not arrive (timer expires) or if it is a negative acknowledgement packet, retransmit the
+00020temporisateur) ou si cest un paquet dacquittement négatif, réémettre le paquet
+00021
+00030anticipatie is 1). Als het bevestigingspakket niet arriveert (verstrijken van een
+00031
+00010concerned packet. There will be only one retransmission attempt.
+00011

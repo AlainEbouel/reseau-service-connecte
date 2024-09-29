@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Random;
 import enumurations.*;
 import interfaces.IPaquet;
-import paquets.PaquetAcquittement;
 import services.EntreeDeTable;
 
 public class ET_Thread extends Thread // Threadind des op�rations de la couche transport ET
@@ -15,12 +14,14 @@ public class ET_Thread extends Thread // Threadind des op�rations de la couche
 	private String data;
 	private File S_ecr;
 	private int idConnexion;
+	private int idApplication;
 
-	public ET_Thread(ProcessusER ER, String data, int idConnexion)
+	public ET_Thread(ProcessusER ER, String data, int idConnexion, int idApplication)
 	{
 		this.ER = ER;
 		this.data = data;
 		this.idConnexion = idConnexion;
+		this.idApplication = idApplication;
 		S_ecr = new File("fichiers/S_ecr.txt");
 	}
 
@@ -28,18 +29,18 @@ public class ET_Thread extends Thread // Threadind des op�rations de la couche
 	public void run()
 	{
 		IPaquet reponse = null;
-		int addrSource = generationAddrSource();
-		PaquetAcquittement resultEnvois;
+		int addrSource = generateAddress(-1);
+		int addrDestination = generateAddress(addrSource);
 		EtatDeConnexion etatConnexion = ProcessusET.getEntreeDeTable(idConnexion).getEtatDeConnexion();
 
-		// Si la connexion n'est pas encore �tablie, tentative d'�tablissement de
+		// Si la connexion n'est pas encore etablie, tentative d'etablissement de
 		// connnexion
 		if (etatConnexion == EtatDeConnexion.attenteDeConfirmation)
 		{
 			try
 			{
 				// Demande de connexion
-				reponse = ER.DemandeDeConnexion(idConnexion, addrSource, 'B');
+				reponse = ER.DemandeDeConnexion(idConnexion, addrSource, addrDestination);
 
 				// ecriture dans S_ecr du resultat de la demande de connexion
 				if (reponse != null)
@@ -54,16 +55,15 @@ public class ET_Thread extends Thread // Threadind des op�rations de la couche
 			if (reponse != null && reponse.getPrimitive() == Primitive.N_DISCONNECT_ind)
 				liberationDesRessources(idConnexion);
 
-			// En cas de connexion accept�e
+			// En cas de connexion acceptee
 			else if (reponse != null && reponse.getPrimitive() == Primitive.N_CONNECT_resp)
 			{
 				ProcessusET.getEntreeDeTable(idConnexion).setEtatDeConnexion(EtatDeConnexion.connexionEtablie);
 
 				try
 				{
-					resultEnvois = ER.preparationPaquetDeDonnees(data, Primitive.N_DATA_req, idConnexion,
-							addrSource);
-
+					ER.preparationPaquetDeDonnees(data, Primitive.N_DATA_req, idConnexion,
+							addrSource, idApplication);
 				} catch (IOException e)
 				{
 					e.printStackTrace();
@@ -71,12 +71,12 @@ public class ET_Thread extends Thread // Threadind des op�rations de la couche
 			}
 		}
 
-		// Si la connexion est �tablie on directement tranferts des donn�es
+		// Si la connexion est etablie on transfert directement des donnees
 		else
 		{
 			try
 			{
-				ER.preparationPaquetDeDonnees(data, Primitive.N_DATA_req, idConnexion, addrSource);
+				ER.preparationPaquetDeDonnees(data, Primitive.N_DATA_req, idConnexion, addrSource, idApplication);
 			} catch (IOException e)
 			{
 				e.printStackTrace();
@@ -84,7 +84,7 @@ public class ET_Thread extends Thread // Threadind des op�rations de la couche
 		}
 	}
 
-	// Lib�ration des ressouces
+	// Liberation des ressouces
 	private void liberationDesRessources(int idConnexion)
 	{
 		for (EntreeDeTable entree : ProcessusET.getTable())
@@ -98,14 +98,23 @@ public class ET_Thread extends Thread // Threadind des op�rations de la couche
 		}
 	}
 
-	// G�n�ration al�atoire d'addresse source
-	private int generationAddrSource()
+	// Generation aleatoire d'addresse
+	private int generateAddress( int addrSource)
 	{
 		Random rand = new Random();
-		return rand.nextInt(249);
+		int addr = rand.nextInt(254);
+
+		if( addrSource == -1 || addrSource != addr) return addr;
+
+		else{
+			while (addrSource == addr ){
+				addr = rand.nextInt(254);
+			}
+			return addr;
+		}
 	}
 
-	// �criture dans S_ecr
+	// ecriture dans S_ecr
 	private void ecrireDansS_ecr(String reponse) throws IOException
 	{
 		FileOutputStream file = null;
